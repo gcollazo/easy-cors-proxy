@@ -1,5 +1,5 @@
 {
-  "name": "easy-proxy-cors",
+  "name": "easy-cors-proxy",
   "version": "0.1.0",
   "description": "Proxy any url with CORS headers",
   "main": "index.js",
