@@ -3,10 +3,10 @@ var http = require('http'),
     url = require('url');
 
 var port = process.env.PORT || 8000,
-    registryURL = 'http://registry.npmjs.org:80/';
+    proxyURL = process.env.PROXY_URL || 'http://registry.npmjs.org:80/';
 
 http.createServer(function (req, res) {
-  var r = request(url.resolve(registryURL, req.url));
+  var r = request(url.resolve(proxyURL, req.url));
 
   // Add CORS Headers
   r.on('response', function(_r) {
@@ -18,3 +18,5 @@ http.createServer(function (req, res) {
   // Stream the response
   req.pipe(r).pipe(res);
 }).listen(port);
+
+console.log('Proxying ' + proxyURL + ' on port ' + port);
