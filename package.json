@@ -1,11 +1,8 @@
 {
   "name": "npm-proxy-cors",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Proxy NPM registry endpoint with CORS headers",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
