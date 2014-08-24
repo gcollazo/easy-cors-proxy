@@ -14,7 +14,7 @@
       "value": "*"
     },
     "ALLOW_METHODS": {
-      "description": "The HTTP Methods you want to allow."
+      "description": "The HTTP Methods you want to allow.",
       "value": "*"
     },
     "ALLOW_HEADERS": {
