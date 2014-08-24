@@ -8,6 +8,18 @@
     "PROXY_URL": {
         "description": "The URL of the server you want to proxy",
         "value": "http://example.com:80"
+    },
+    "ALLOW_ORIGIN": {
+      "description": "The HTTP Origin you want to allow.",
+      "value": "*"
+    },
+    "ALLOW_METHODS": {
+      "description": "The HTTP Methods you want to allow."
+      "value": "*"
+    },
+    "ALLOW_HEADERS": {
+      "description": "The HTTP Headers you want to allow. Multiple values separated by comma.",
+      "value": "X-Requested-With"
     }
   }
 }
