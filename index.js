@@ -10,8 +10,10 @@ var port = process.env.PORT || 8000,
 
 http.createServer(function (req, res) {
   var hostname = url.parse(req.headers.referer || '').hostname || '';
-	if (hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org')) {
-		var apiPath = '/api/v1';
+  
+  console.log(hostname);
+  if (hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org')) {
+    var apiPath = '/api/v1';
     var reqUrl = req.url.startsWith(apiPath) ? req.url : apiPath + req.url;
     var r = request(new URL(proxyURL, reqUrl).toString());
 
