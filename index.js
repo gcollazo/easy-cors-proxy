@@ -26,11 +26,11 @@ http.createServer(function (req, res) {
     req.pipe(r).pipe(res);
     
   } else {
-
-		// Return empty JSON data
-		res.writeHead(200, { 'Content-Type': 'application/json' });
-		res.write({});
-		res.end();
+    
+    // Return empty JSON data
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.write({});
+    res.end();
     
   }
 }).listen(port);
