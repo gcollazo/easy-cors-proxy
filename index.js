@@ -15,7 +15,7 @@ http.createServer(function (req, res) {
   if (hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org')) {
     var apiPath = '/api/v1';
     var reqUrl = req.url.startsWith(apiPath) ? req.url : apiPath + req.url;
-    var r = request(proxyURL + reqUrl);
+    var r = request(new URL(reqUrl, proxyURL));
 
     // Add CORS Headers
     r.on('response', function(_r) {
