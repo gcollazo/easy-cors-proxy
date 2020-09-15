@@ -11,10 +11,10 @@ var port = process.env.PORT || 8000,
 http.createServer(function (req, res) {
   var hostname = url.parse(req.headers.referer || '').hostname || '';
   
-  console.log(hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org'));
-  if (hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org')) {
-    var apiPath = '/api/v1';
-    var reqUrl = req.url.startsWith(apiPath) ? req.url : apiPath + req.url;
+  var apiPath = '/api/v1',
+      reqUrl = req.url.startsWith(apiPath) ? req.url : apiPath + req.url;
+  
+  if ((hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org')) && reqUrl.length > apiPath.length + 1) {
     var r = request(new URL(reqUrl, proxyURL).toString());
 
     // Add CORS Headers
