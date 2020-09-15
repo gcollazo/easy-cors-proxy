@@ -9,7 +9,9 @@ var port = process.env.PORT || 8000,
     allowHeaders = process.env.ALLOW_HEADERS || 'X-Requested-With'
 
 http.createServer(function (req, res) {
-  var r = request(url.resolve(proxyURL, req.url));
+  var apiPath = '/api/v1';
+  var reqUrl = req.url.startsWith(apiPath) ? req.url.substring(apiPath.length) : req.url;
+  var r = request(url.resolve(proxyURL, reqUrl));
 
   // Add CORS Headers
   r.on('response', function(_r) {
