@@ -9,20 +9,30 @@ var port = process.env.PORT || 8000,
     allowHeaders = process.env.ALLOW_HEADERS || 'X-Requested-With'
 
 http.createServer(function (req, res) {
-  var apiPath = '/api/v1';
-  var reqUrl = req.url.startsWith(apiPath) ? req.url : apiPath + req.url;
-    console.log(reqUrl, proxyURL);
-  var r = request(new URL(proxyURL, reqUrl).toString());
+  var hostname = url.parse(req.headers.referer || '').hostname || '';
+	if (hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org')) {
+		var apiPath = '/api/v1';
+    var reqUrl = req.url.startsWith(apiPath) ? req.url : apiPath + req.url;
+    var r = request(new URL(proxyURL, reqUrl).toString());
 
-  // Add CORS Headers
-  r.on('response', function(_r) {
-    _r.headers['Access-Control-Allow-Origin'] = allowOrigin;
-    _r.headers['Access-Control-Allow-Methods'] = allowMethods;
-    _r.headers['Access-Control-Allow-Headers'] = allowHeaders;
-  });
+    // Add CORS Headers
+    r.on('response', function(_r) {
+      _r.headers['Access-Control-Allow-Origin'] = allowOrigin;
+      _r.headers['Access-Control-Allow-Methods'] = allowMethods;
+      _r.headers['Access-Control-Allow-Headers'] = allowHeaders;
+    });
 
-  // Stream the response
-  req.pipe(r).pipe(res);
+    // Stream the response
+    req.pipe(r).pipe(res);
+    
+  } else {
+
+		// Return empty JSON data
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.write({});
+		res.end();
+    
+  }
 }).listen(port);
 
 console.log('Proxying ' + proxyURL + ' on port ' + port);
