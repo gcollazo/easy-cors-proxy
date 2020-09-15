@@ -10,7 +10,7 @@ var port = process.env.PORT || 8000,
 
 http.createServer(function (req, res) {
   var apiPath = '/api/v1';
-  var reqUrl = req.url.startsWith(apiPath) ? req.url.substring(apiPath.length) : req.url;
+  var reqUrl = req.url.startsWith(apiPath) ? req.url : apiPath + req.url;
     console.log(proxyURL, reqUrl);
   var r = request(new URL(proxyURL, reqUrl).toString());
 
