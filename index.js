@@ -29,7 +29,7 @@ http.createServer(function (req, res) {
     
     // Return empty JSON data
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.write({});
+    res.write('{}');
     res.end();
     
   }
