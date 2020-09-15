@@ -11,6 +11,7 @@ var port = process.env.PORT || 8000,
 http.createServer(function (req, res) {
   var apiPath = '/api/v1';
   var reqUrl = req.url.startsWith(apiPath) ? req.url.substring(apiPath.length) : req.url;
+    console.log(proxyURL, reqUrl, new URL(proxyURL, reqUrl));
   var r = request(new URL(proxyURL, reqUrl).toString());
 
   // Add CORS Headers
