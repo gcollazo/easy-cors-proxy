@@ -11,7 +11,7 @@ var port = process.env.PORT || 8000,
 http.createServer(function (req, res) {
   var hostname = url.parse(req.headers.referer || '').hostname || '';
   
-  console.log(hostname);
+  console.log(hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org'));
   if (hostname.endsWith('.fandom.com') || hostname.endsWith('.wikia.org')) {
     var apiPath = '/api/v1';
     var reqUrl = req.url.startsWith(apiPath) ? req.url : apiPath + req.url;
